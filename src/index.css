@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+#root {
+  display: flex;
+  height: 100vh;
+}
+
+.MuiPaper-root {
+  height: 100%;
+}
+
+.MuiGrid-root {
+  height: 100%;
+}
