@@ -1,4 +1,4 @@
-// routes/user.js
+// routes/users.js
 const express = require('express');
 const User = require('../models/User');
 const router = express.Router();
@@ -15,11 +15,12 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get all users
+// Get all users or by name
 router.get('/', async (req, res) => {
   try {
-    const users = await User.find();
-    console.log(users);
+    const { name } = req.query;
+    const query = name ? { name } : {};
+    const users = await User.find(query);
     res.json(users);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -27,4 +28,3 @@ router.get('/', async (req, res) => {
 });
 
 module.exports = router;
-
