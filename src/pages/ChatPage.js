@@ -1,3 +1,4 @@
+// src/pages/ChatPage.js
 import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import Sidebar from '../components/Sidebar';
@@ -21,9 +22,15 @@ const ChatPage = ({ user }) => {
   };
 
   return (
-    <Box style={{ display: 'flex', height: '100vh' }}>
-      <Sidebar users={users} onUserSelect={handleUserSelect} selectedUser={selectedUser} />
-      {selectedUser && <Chat user={user} selectedUser={selectedUser} />}
+    <Box sx={{ display: 'flex', height: '100vh', width: '100vw', backgroundColor: '#f3f3f9' }}>
+      <Box sx={{ width: '300px', borderRadius: '12px', backgroundColor: '#dcdcf1', margin: 2 }}>
+        <Sidebar users={users} onUserSelect={handleUserSelect} selectedUser={selectedUser} />
+      </Box>
+      {selectedUser && (
+        <Box sx={{ flex: 1, border: '1px solid #ddd', borderRadius: '16px', backgroundColor: '#e6e6ff', margin: 2 }}>
+          <Chat user={user} selectedUser={selectedUser} />
+        </Box>
+      )}
     </Box>
   );
 };
