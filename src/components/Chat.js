@@ -1,9 +1,10 @@
 // src/components/Chat.js
 import React, { useState, useEffect } from 'react';
-import { Box, List, ListItem, ListItemText, TextField, IconButton, Avatar } from '@mui/material';
+import { Box, List, ListItem, ListItemText, TextField, IconButton, Avatar, Typography } from '@mui/material';
 import { Send as SendIcon } from '@mui/icons-material';
 import io from 'socket.io-client';
 import axios from 'axios';
+import moment from 'moment'; // Add moment.js for formatting dates
 
 const socket = io('http://localhost:5001');
 
@@ -16,7 +17,10 @@ const MessageLeft = ({ message }) => (
   <ListItem sx={{ display: 'flex', justifyContent: 'flex-start' }}>
     <Avatar sx={{ marginRight: 2 }}>{getAvatar(message.sender)}</Avatar>
     <Box sx={{ backgroundColor: '#fff', borderRadius: '10px', padding: 1 }}>
-      <ListItemText primary={`${message.sender}: ${message.content}`} />
+      <ListItemText
+        primary={<Typography>{`${message.sender}: ${message.content}`}</Typography>}
+        secondary={moment(message.timestamp).format('hh:mm A')}
+      />
     </Box>
   </ListItem>
 );
@@ -24,7 +28,10 @@ const MessageLeft = ({ message }) => (
 const MessageRight = ({ message }) => (
   <ListItem sx={{ display: 'flex', justifyContent: 'flex-end' }}>
     <Box sx={{ backgroundColor: '#e0e0e0', borderRadius: '10px', padding: 1 }}>
-      <ListItemText primary={`${message.sender}: ${message.content}`} />
+      <ListItemText
+        primary={<Typography>{`${message.sender}: ${message.content}`}</Typography>}
+        secondary={moment(message.timestamp).format('hh:mm A')}
+      />
     </Box>
     <Avatar sx={{ marginLeft: 2 }}>{getAvatar(message.sender)}</Avatar>
   </ListItem>
@@ -55,7 +62,7 @@ const Chat = ({ user, selectedUser }) => {
   }, [selectedUser]);
 
   const handleSendMessage = () => {
-    const message = { sender: user.name, receiver: selectedUser.name, content: text };
+    const message = { sender: user.name, receiver: selectedUser.name, content: text, timestamp: new Date() };
     socket.emit('message', message);
     setText('');
   };
