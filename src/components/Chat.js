@@ -18,7 +18,7 @@ const MessageLeft = ({ message }) => (
     <Avatar sx={{ marginRight: 2 }}>{getAvatar(message.sender)}</Avatar>
     <Box sx={{ backgroundColor: '#fff', borderRadius: '10px', padding: 1 }}>
       <ListItemText
-        primary={<Typography>{`${message.sender}: ${message.content}`}</Typography>}
+        primary={<Typography>{message.content}</Typography>}
         secondary={moment(message.timestamp).format('hh:mm A')}
       />
     </Box>
@@ -29,7 +29,7 @@ const MessageRight = ({ message }) => (
   <ListItem sx={{ display: 'flex', justifyContent: 'flex-end' }}>
     <Box sx={{ backgroundColor: '#e0e0e0', borderRadius: '10px', padding: 1 }}>
       <ListItemText
-        primary={<Typography>{`${message.sender}: ${message.content}`}</Typography>}
+        primary={<Typography>{message.content}</Typography>}
         secondary={moment(message.timestamp).format('hh:mm A')}
       />
     </Box>
