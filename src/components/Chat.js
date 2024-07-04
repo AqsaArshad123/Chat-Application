@@ -1,4 +1,3 @@
-// src/components/Chat.js
 import React, { useState, useEffect } from 'react';
 import { Box, List, ListItem, ListItemText, TextField, IconButton, Avatar, Typography } from '@mui/material';
 import { Send as SendIcon } from '@mui/icons-material';
@@ -69,6 +68,9 @@ const Chat = ({ user, selectedUser }) => {
 
   return (
     <Box p={2} display="flex" flexDirection="column" height="100%">
+      <Typography variant="h4" align="center" gutterBottom sx={{ color: '#1976d2' }}>
+        Talk-a-Tive
+      </Typography>
       <Box flex={1} overflow="auto">
         <List>
           {messages.map((msg, index) => (

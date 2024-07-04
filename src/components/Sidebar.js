@@ -43,4 +43,4 @@ const Sidebar = ({ users, onUserSelect, selectedUser, unreadMessages }) => {
   );
 };
 
-export default Sidebar;
+export default Sidebar
